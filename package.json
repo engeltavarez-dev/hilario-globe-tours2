@@ -1,0 +1,9 @@
+{
+  "name": "hilario-globe-tour",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web de HILARIO GLOBE TOUR con catálogo sincronizado",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}

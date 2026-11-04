@@ -1,0 +1,51 @@
+HILARIO GLOBE TOUR — PAQUETE PARA NETLIFY
+
+QUÉ INCLUYE
+- index.html: página actualizada.
+- netlify/functions/site-data.mjs: API privada que guarda los datos compartidos.
+- netlify.toml y package.json: configuración para que Netlify publique la función.
+
+IMPORTANTE
+El panel de administración ya no guarda los cambios únicamente en el navegador.
+Cuando guardas una excursión/promoción/contacto, el navegador envía los datos a una función de Netlify.
+La función los guarda en Netlify Blobs; cualquier visitante obtiene los mismos datos al abrir la web.
+Las fotos que subas desde el panel se comprimen antes de enviarse. Hay un límite de seguridad de 5.5 MB por guardado.
+
+PUBLICACIÓN RECOMENDADA (GITHUB + NETLIFY)
+1. Descarga y descomprime este ZIP.
+2. En GitHub crea un repositorio nuevo, por ejemplo: hilario-globe-tour.
+3. Sube TODOS los archivos y carpetas que están dentro de hgt-netlify-site (no subas solamente index.html).
+   Deben quedar index.html, netlify.toml, package.json y la carpeta netlify/functions/site-data.mjs en la raíz del repositorio.
+4. En Netlify entra a Add new site / Import an existing project.
+5. Conecta GitHub, autoriza el repositorio hilario-globe-tour y selecciónalo.
+6. En configuración de build verifica:
+   - Build command: npm install
+   - Publish directory: .
+7. Antes de publicar, abre Site configuration / Environment variables (o Environment variables)
+   y crea esta variable:
+   - Key: HGT_ADMIN_PIN
+   - Value: un PIN privado nuevo y difícil de adivinar (no uses 1234).
+8. Guarda la variable y haz Deploy. Si Netlify ya había hecho un deploy antes de añadir el PIN,
+   vuelve a hacer Trigger deploy / Deploy site para que la función reciba la variable.
+9. Abre la URL pública de Netlify. Toca el logo 10 veces, escribe el PIN y prueba agregar una excursión.
+10. Abre la página en otro teléfono o en una ventana incógnita: la excursión debe aparecer también allí.
+
+CÓMO PUBLICAR CAMBIOS EN EL FUTURO
+- Para cambiar excursiones, promociones, imágenes, teléfono o Instagram: entra al panel de la página
+  (10 toques en el logo), escribe el PIN y guarda. Los cambios se sincronizan con el servidor y los ven
+  todos los visitantes sin volver a subir el HTML.
+- Para cambiar el diseño o el código: modifica index.html en GitHub y haz commit; Netlify detecta
+  el cambio y publica una nueva versión automáticamente.
+- No borres netlify/functions, package.json ni netlify.toml: son necesarios para la sincronización.
+
+MARCA DE NETLIFY
+El distintivo/branding que Netlify pueda mostrar lo controla Netlify y no se elimina desde el HTML.
+Este diseño deja libre la esquina inferior derecha y mueve el botón flotante de WhatsApp a la izquierda
+para evitar que ambos se tapen. Si el distintivo sigue cubriendo otro elemento, revisa su ubicación
+en la configuración de Netlify o comparte una captura para ajustar el espacio exacto.
+
+SEGURIDAD Y COPIAS
+- El PIN se guarda como variable privada de Netlify, no dentro del HTML.
+- «Copiar datos» en el panel sirve para sacar una copia de seguridad; ya no es necesario para publicar.
+- No compartas el PIN con visitantes.
+- Netlify Blobs conserva los datos aunque publiques una nueva versión del HTML.
